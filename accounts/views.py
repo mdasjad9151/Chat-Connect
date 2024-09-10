@@ -17,12 +17,13 @@ def register_user(request):
 def login(request):
     serializer = LoginSerializer(data=request.data)
     if serializer.is_valid():
+        user_data = serializer.validated_data
         token = JWTAuthentication.generate_token(serializer.data)
-        print(token)
-        print(serializer.data)
+        # print(serializer.data)
+        # print(user_data)
         return Response({
             "message": "Login Successful",
             "token": token,
-            "user": serializer.data
+            "user":  user_data
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

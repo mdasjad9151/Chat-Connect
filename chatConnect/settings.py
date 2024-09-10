@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'accounts',
+    'chat', 
 ]
 
 MIDDLEWARE = [
@@ -78,6 +80,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chatConnect.wsgi.application'
+
+# add mannaul
+ASGI_APPLICATION = 'chatConnect.asgi.application'
+
+CHANNEL_LAYER = {
+    'deflut':{
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {'hosts': [("127.0.0.1", 6379)]}
+
+    }
+}
 
 
 # Database
